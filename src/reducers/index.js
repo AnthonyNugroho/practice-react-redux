@@ -10,20 +10,30 @@ const actionsReducer = () => {
     ];
 };
 
+const initialState = {
+  kerjaan:'abc',
+  history:[]
+};
 
-const selectedReducer = (selectedTodo= null, action) => {
+
+const selectedReducer = (state= initialState, action) => {
   console.log(action);
     if (action.type === 'SELECTED_TODO' ) {
-        return action.payload;
+        return {
+          ...state,
+          kerjaan: state.kerjaan.concat({kerjaan: state.kerjaan + action.value}),
+          history:state.history.concat({kerjaan: state.kerjaan + action.value})
+
+        }
 
     }
 
-    return selectedTodo;
+    return state;
 };
 
 
 
 export default combineReducers({
-    todos: actionsReducer,
+    kerja: actionsReducer,
     selectedAction: selectedReducer
 })

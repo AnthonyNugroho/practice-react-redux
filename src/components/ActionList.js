@@ -6,15 +6,15 @@ import { selectedAction } from '../actions';
 class ActionList extends React.Component {
     renderList() {
       const {
-        selectTodo,
-        todos,
+        choose,
+        kerja,
       } = this.props;
-      console.log(todos);
-        return this.props.todos.map((todo) => {
+      console.log(kerja);
+        return this.props.kerja.map((todo) => {
             return (
                 <div className="item" key={todo.id}>
                     <div className="right floated content">
-                        <button className="ui button primary" onClick={() => selectTodo(todo)}>
+                        <button className="ui button primary" onClick={() => choose(todo)}>
                             select
                         </button>
                     </div>
@@ -32,12 +32,16 @@ class ActionList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {todos: state.todos};
+    return {
+      kerja: state.kerja
+    };
 }
 
-const mapDispatchToProps = dispatch => ({
-  selectTodo: todo => dispatch(selectedAction(todo))
-})
+const mapDispatchToProps = (dispatch) => {
+  return {
+    choose: () => dispatch({type:'SELECTED_TODO', value: {selectedAction} })
+  };
+};
 
 
 
